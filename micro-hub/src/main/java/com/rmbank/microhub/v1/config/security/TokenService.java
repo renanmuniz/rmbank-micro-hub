@@ -4,12 +4,14 @@ import com.rmbank.microhub.v1.hexagono.dominio.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Slf4j
 @Service
 public class TokenService {
     @Value("${micro-hub.jwt.expiration}")
@@ -23,13 +25,11 @@ public class TokenService {
         Date hoje = new Date();
         Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
 
-        System.out.println("###################################################");
-        System.out.println("Usuario logado:      " + logado.nome);
-        System.out.println("Expiracao da sessao: " + dataExpiracao);
-        System.out.println("###################################################");
+        log.info("Usuario logado: " + logado.nome);
+        log.info("Expiracao da sessao: " + dataExpiracao);
 
         return Jwts.builder()
-                .setIssuer("API springbank")
+                .setIssuer("API micro-hub")
                 .setSubject(logado.getId().toString())
                 .setIssuedAt(hoje)
                 .setExpiration(dataExpiracao)
