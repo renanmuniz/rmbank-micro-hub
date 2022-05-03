@@ -1,5 +1,6 @@
 package com.rmbank.microhub.v1.hexagono.porta.implementacao;
 
+import com.rmbank.microhub.v1.hexagono.exception.AutenticacaoException;
 import com.rmbank.microhub.v1.hexagono.porta.contrato.PortaAutenticacao;
 import com.rmbank.microhub.v1.hexagono.processo.contrato.ProcessoAutenticacao;
 import com.rmbank.microhub.v1.rest.dto.LoginForm;
@@ -16,14 +17,8 @@ public class PortaAutenticacaoImp implements PortaAutenticacao {
     ProcessoAutenticacao processoAutenticacao;
 
     @Override
-    public TokenDto autenticar(LoginForm login) {
-        log.info("Chamada rest para porta PortaAutenticacao");
-        try {
-            TokenDto token = processoAutenticacao.autenticar(login);
-            return token;
-        } catch (Exception e) {
-            log.error("Erro na chamada do processo de autenticacao: " + e.getMessage());
-        }
-        return null;
+    public TokenDto autenticar(LoginForm login) throws Exception {
+        log.info("Chamada porta PortaAutenticacao. Usuário: " + login.getUsuario());
+        return processoAutenticacao.autenticar(login);
     }
 }

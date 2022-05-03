@@ -1,5 +1,6 @@
 package com.rmbank.microhub.v1.rest.implementacao;
 
+import com.rmbank.microhub.v1.hexagono.exception.AutenticacaoException;
 import com.rmbank.microhub.v1.hexagono.porta.contrato.PortaAutenticacao;
 import com.rmbank.microhub.v1.rest.contrato.AutenticacaoRest;
 import com.rmbank.microhub.v1.rest.dto.LoginForm;
@@ -23,13 +24,10 @@ public class AutenticacaoRestImp implements AutenticacaoRest {
     private PortaAutenticacao porta;
 
     @PostMapping
-    public ResponseEntity<TokenDto> autenticar(@RequestBody @Valid LoginForm form) {
+    public ResponseEntity<TokenDto> autenticar(@RequestBody @Valid LoginForm form)
+            throws Exception {
         log.info("Chamada POST em /auth com o usuário: " + form.getUsuario());
         TokenDto token = porta.autenticar(form);
-        if(token != null){
-            return ResponseEntity.ok(token);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
+        return ResponseEntity.ok(token);
     }
 }

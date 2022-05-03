@@ -2,6 +2,7 @@ package com.rmbank.microhub.v1.config.security;
 
 import com.rmbank.microhub.v1.hexagono.dominio.Usuario;
 import com.rmbank.microhub.v1.hexagono.servico.repositorio.jpa.UsuarioRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
