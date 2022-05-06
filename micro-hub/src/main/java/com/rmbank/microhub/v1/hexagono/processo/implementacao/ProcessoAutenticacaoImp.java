@@ -1,7 +1,7 @@
 package com.rmbank.microhub.v1.hexagono.processo.implementacao;
 
 import com.rmbank.microhub.v1.config.security.TokenService;
-import com.rmbank.microhub.v1.hexagono.exception.AutenticacaoException;
+import com.rmbank.microhub.v1.hexagono.exception.NegocioException;
 import com.rmbank.microhub.v1.hexagono.processo.contrato.ProcessoAutenticacao;
 import com.rmbank.microhub.v1.rest.dto.LoginForm;
 import com.rmbank.microhub.v1.rest.dto.TokenDto;
@@ -33,8 +33,8 @@ public class ProcessoAutenticacaoImp implements ProcessoAutenticacao {
             log.info("Usuário: " + form.getUsuario() + " autenticado.");
             return new TokenDto(token, "Bearer");
         } catch (AuthenticationException e) {
-            log.error("Erro de autenticacao do usuario: " + form.getUsuario() + " - " + e.getMessage());
-            throw new AutenticacaoException("Usuário ou Senha inválido.");
+            log.info("Erro de autenticacao do usuario: " + form.getUsuario() + " - " + e.getMessage());
+            throw new NegocioException("Usuário ou Senha inválido.");
         } catch (Exception e) {
             log.error("Erro na autenticacao do usuario: " + form.getUsuario() + " - " + e.getMessage());
             throw new Exception(e);

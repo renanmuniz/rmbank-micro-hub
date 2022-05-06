@@ -1,6 +1,5 @@
 package com.rmbank.microhub.v1.rest.contrato;
 
-import com.rmbank.microhub.v1.hexagono.exception.AutenticacaoException;
 import com.rmbank.microhub.v1.rest.dto.LoginForm;
 import com.rmbank.microhub.v1.rest.dto.TokenDto;
 import org.springframework.http.ResponseEntity;

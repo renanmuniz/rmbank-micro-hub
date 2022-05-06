@@ -1,6 +1,5 @@
 package com.rmbank.microhub.v1.rest.implementacao;
 
-import com.rmbank.microhub.v1.hexagono.exception.AutenticacaoException;
 import com.rmbank.microhub.v1.hexagono.porta.contrato.PortaAutenticacao;
 import com.rmbank.microhub.v1.rest.contrato.AutenticacaoRest;
 import com.rmbank.microhub.v1.rest.dto.LoginForm;
