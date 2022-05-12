@@ -14,6 +14,7 @@ import java.util.Objects;
 @Table(name="usuario")
 public class Usuario implements UserDetails {
     @Id
+    @NotNull
     @Column(name = "id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Long id;
@@ -33,6 +34,14 @@ public class Usuario implements UserDetails {
     public Long cadastro;
 
     public Usuario() {
+    }
+
+    public Usuario(Long id, String nome, String senha, Long cadastro) {
+        this.id = id;
+        this.nome = nome;
+        this.senha = senha;
+        this.cadastro = cadastro;
+        validar();
     }
 
     public Usuario(String nome, String senha) {
@@ -120,5 +129,9 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void validar() {
+        Validador.validar(this);
     }
 }
